@@ -31,15 +31,13 @@ as a handle to the bitmap image.
 ###Types
 
 * ```uid_t```: 128-bit unique identifier used as a handle to a bitmap image
-* ```pixel```: A structure of containing the RGB saturation values (3 byte length)
+* ```pixel```: A 24-bit structure of containing the RGB saturation values
 
 ###Library Interface
 
 ####Library Functions
-* ```initialize()```: Initialize the bitmap manager (This call will clear all current images, and should
-be called only once)
-* ```cleanup```: Cleanup the bitmap manager (Typically, this function should be called upon the application
-exit)
+* ```initialize()```: Initialize the bitmap manager (This function should be called upon the application entry)
+* ```cleanup```: Cleanup the bitmap manager (This function should be called upon the application exit)
 
 ####File Management
 * ```contains(id)```: Check for the existance of a bitmap image at a given unique id
