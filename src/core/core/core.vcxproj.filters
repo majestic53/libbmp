@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="common">
+      <UniqueIdentifier>{fd30c7b8-c5bc-4566-8c80-c89596096120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component">
+      <UniqueIdentifier>{786c2fb9-097d-4755-b7c2-647499380efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\random">
+      <UniqueIdentifier>{14921f22-391b-4e65-b39d-002ee21d3c83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="component\unique_id">
+      <UniqueIdentifier>{0fb6bc4c-7982-4653-bda9-fbfad37df37b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\exception.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\trace.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\type.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bitmap_type.h" />
+    <ClInclude Include="..\bitmap.h" />
+    <ClInclude Include="..\unique_id.h">
+      <Filter>component\unique_id</Filter>
+    </ClInclude>
+    <ClInclude Include="..\unique_id_class.h">
+      <Filter>component\unique_id</Filter>
+    </ClInclude>
+    <ClInclude Include="..\unique_id_class_type.h">
+      <Filter>component\unique_id</Filter>
+    </ClInclude>
+    <ClInclude Include="..\unique_id_type.h">
+      <Filter>component\unique_id</Filter>
+    </ClInclude>
+    <ClInclude Include="..\random.h">
+      <Filter>component\random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\random_type.h">
+      <Filter>component\random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bitmap_context_type.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bitmap_context.h">
+      <Filter>component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\version.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\bitmap.cpp" />
+    <ClCompile Include="..\unique_id.cpp">
+      <Filter>component\unique_id</Filter>
+    </ClCompile>
+    <ClCompile Include="..\unique_id_class.cpp">
+      <Filter>component\unique_id</Filter>
+    </ClCompile>
+    <ClCompile Include="..\random.cpp">
+      <Filter>component\random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bitmap_context.cpp">
+      <Filter>component</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
