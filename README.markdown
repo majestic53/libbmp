@@ -31,7 +31,7 @@ as a handle to the bitmap image.
 ###Types
 
 * ```uid_t```: 128-bit unique identifier used as a handle to a bitmap image
-* ```pixel```: A 24-bit structure of containing the RGB saturation values
+* ```pixel```: A 24-bit structure containing the RGB saturation values
 
 ###Library Interface
 
