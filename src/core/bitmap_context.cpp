@@ -122,10 +122,10 @@ namespace bitmap {
 					);
 			}
 			clear();
-			padding = (width * sizeof(pixel)) % 4;
+			padding = (width * sizeof(pixel_t)) % 4;
 			_image.resize(width * height);
 			_header.file_type = 'MB';
-			_header.file_size = (uint32_t) (sizeof(bitmap_header) + (_image.size() * sizeof(pixel)) + (padding * height));
+			_header.file_size = (uint32_t) (sizeof(bitmap_header) + (_image.size() * sizeof(pixel_t)) + (padding * height));
 			_header.image_offset = sizeof(bitmap_header);
 			_header.information.header_size = sizeof(bitmap_info);
 			_header.information.image_width = width;
@@ -133,7 +133,7 @@ namespace bitmap {
 			_header.information.color_planes = 1;
 			_header.information.bits_per_pixel = 24;
 			_header.information.compression_type = 0;
-			_header.information.image_size = (uint32_t) (_image.size() * sizeof(pixel) + (padding * height));
+			_header.information.image_size = (uint32_t) (_image.size() * sizeof(pixel_t) + (padding * height));
 			_header.information.resolution_x = 0;
 			_header.information.resolution_y = 0;
 			_header.information.color_count = 0;
@@ -154,7 +154,7 @@ namespace bitmap {
 			return _header;
 		}
 
-		pixel &
+		pixel_t &
 		_bitmap_context::get_pixel(
 			uint32_t x,
 			uint32_t y
@@ -192,7 +192,7 @@ namespace bitmap {
 
 			SERIALIZE_CALL(std::recursive_mutex, _bitmap_context_lock);
 
-			pixel pix;
+			pixel_t px;
 			uint8_t sink;
 			size_t i = 0, j;
 			uint32_t padding;
@@ -225,11 +225,11 @@ namespace bitmap {
 					"path. " << path
 					);
 			}
-			padding = (_header.information.image_width * sizeof(pixel)) % 4;
+			padding = (_header.information.image_width * sizeof(pixel_t)) % 4;
 
-			if(_header.file_size != sizeof(bitmap_header) + ((_header.information.image_width * _header.information.image_height) * sizeof(pixel))
+			if(_header.file_size != sizeof(bitmap_header) + ((_header.information.image_width * _header.information.image_height) * sizeof(pixel_t))
 						+ (padding * _header.information.image_height)
-					|| _header.information.image_size != ((_header.information.image_width * _header.information.image_height) * sizeof(pixel))
+					|| _header.information.image_size != ((_header.information.image_width * _header.information.image_height) * sizeof(pixel_t))
 						+ (padding * _header.information.image_height)
 					)
 			{
@@ -249,10 +249,10 @@ namespace bitmap {
 						file >> (uint8_t) sink;
 					}
 				}
-				file >> pix.channel[CHANNEL_BLUE];
-				file >> pix.channel[CHANNEL_GREEN];
-				file >> pix.channel[CHANNEL_RED];
-				_image.at(i) = pix;	
+				file >> px.channel[CHANNEL_BLUE];
+				file >> px.channel[CHANNEL_GREEN];
+				file >> px.channel[CHANNEL_RED];
+				_image.at(i) = px;	
 			}
 			file.close();
 
@@ -261,9 +261,9 @@ namespace bitmap {
 
 		void 
 		_bitmap_context::set_pixel(
-			const pixel &value,
 			uint32_t x,
-			uint32_t y
+			uint32_t y,
+			const pixel_t &px
 			)
 		{
 			TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "+_bitmap_context::set_pixel");
@@ -283,7 +283,7 @@ namespace bitmap {
 					"y > height"
 					);
 			}
-			_image.at(PIXEL_COORDINATE(x, y, _header.information.image_width)) = value;
+			_image.at(PIXEL_COORDINATE(x, y, _header.information.image_width)) = px;
 
 			TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "-_bitmap_context::set_pixel");
 		}
@@ -335,7 +335,7 @@ namespace bitmap {
 			size_t i, j;
 			uint8_t *data;
 			uint32_t padding;
-			std::vector<pixel>::iterator pixel_iter;
+			std::vector<pixel_t>::iterator pixel_iter;
 			std::ofstream file(path.c_str(), std::ios::out | std::ios::trunc | std::ios::binary);
 
 			if(!file) {
@@ -345,7 +345,7 @@ namespace bitmap {
 					);
 			}
 			data = (uint8_t *) &_header;
-			padding = (_header.information.image_width * sizeof(pixel)) % 4;
+			padding = (_header.information.image_width * sizeof(pixel_t)) % 4;
 
 			for(i = 0; i < sizeof(bitmap_header); ++i) {
 				file << data[i];

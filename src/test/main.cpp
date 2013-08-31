@@ -29,7 +29,7 @@ int
 main(void)
 {
 	int i = 0, j, result = 0;
-	bitmap::pixel px = {0xff, 0xff, 0xff};
+	bitmap::pixel_t px = {0xff, 0xff, 0xff};
 	bitmap::uid_t bmp_id = NULL_UNIQUE_ID;
 
 	try {

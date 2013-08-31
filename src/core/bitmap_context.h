@@ -94,7 +94,7 @@ namespace bitmap {
 
 				bitmap_header &get_header(void);
 
-				pixel &get_pixel(
+				pixel_t &get_pixel(
 					uint32_t x,
 					uint32_t y
 					);
@@ -104,9 +104,9 @@ namespace bitmap {
 					);
 
 				void set_pixel(
-					const pixel &value,
 					uint32_t x,
-					uint32_t y
+					uint32_t y,
+					const pixel_t &px
 					);
 
 				virtual std::string to_string(
@@ -121,7 +121,7 @@ namespace bitmap {
 
 				bitmap_header _header;
 
-				std::vector<pixel> _image;
+				std::vector<pixel_t> _image;
 
 			private:
 

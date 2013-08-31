@@ -34,8 +34,8 @@ namespace bitmap {
 
 	bool 
 	operator==(
-		const pixel &left,
-		const pixel &right
+		const pixel_t &left,
+		const pixel_t &right
 		)
 	{
 		size_t i = 0;
@@ -54,8 +54,27 @@ namespace bitmap {
 
 	bool 
 	operator!=(
-		const pixel &left,
-		const pixel &right
+		const pixel_t &left,
+		const pixel_t &right
+		)
+	{
+		return !(left == right);
+	}
+
+	bool 
+	operator==(
+		const uid_t &left,
+		const uid_t &right
+		)
+	{
+		return (left.block[0] == right.block[0])
+				&& (left.block[1] == right.block[1]);
+	}
+
+	bool 
+	operator!=(
+		const uid_t &left,
+		const uid_t &right
 		)
 	{
 		return !(left == right);
@@ -101,7 +120,7 @@ namespace bitmap {
 
 	std::string 
 	convert_pixel_to_string(
-		const pixel &px
+		const pixel_t &px
 		)
 	{
 		TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "+bitmap::convert_pixel_to_string");
@@ -165,7 +184,7 @@ namespace bitmap {
 		return result;
 	}
 
-	pixel 
+	pixel_t 
 	get_pixel(
 		uint32_t x,
 		uint32_t y,
@@ -176,7 +195,7 @@ namespace bitmap {
 
 		SERIALIZE_CALL(std::recursive_mutex, __bitmap_lock);
 
-		pixel px;
+		pixel_t px;
 		std::map<uid_t, component::bitmap_context>::iterator bitmap_iter;
 
 		if(!__bitmap_initialized) {
@@ -288,7 +307,7 @@ namespace bitmap {
 	set_pixel(
 		uint32_t x,
 		uint32_t y,
-		const pixel &px,
+		const pixel_t &px,
 		const uid_t &id
 		)
 	{
@@ -309,7 +328,7 @@ namespace bitmap {
 				component::unique_id::convert_to_string(id)
 				);
 		}
-		bitmap_iter->second.set_pixel(px, x, y);
+		bitmap_iter->second.set_pixel(x, y, px);
 		
 		TRACE_MESSAGE(TRACE_LEVEL_VERBOSE, "-bitmap::set_pixel");
 	}

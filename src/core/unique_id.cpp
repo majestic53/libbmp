@@ -37,25 +37,6 @@ namespace bitmap {
 						&& left.block[1] < right.block[1]);
 	}
 
-	bool 
-	operator==(
-		const uid_t &left,
-		const uid_t &right
-		)
-	{
-		return (left.block[0] == right.block[0])
-				&& (left.block[1] == right.block[1]);
-	}
-
-	bool 
-	operator!=(
-		const uid_t &left,
-		const uid_t &right
-		)
-	{
-		return !(left == right);
-	}
-
 	namespace component {
 
 		namespace unique_id {

@@ -20,8 +20,8 @@
 #ifndef BITMAP_H_
 #define BITMAP_H_
 
+#include <cstdint>
 #include <string>
-#include "unique_id.h"
 
 namespace bitmap {
 
@@ -32,24 +32,39 @@ namespace bitmap {
 	};
 
 	#define MAX_CHANNEL CHANNEL_RED
-
 	#define NULL_PIXEL {0}
+	#define NULL_UNIQUE_ID {0}
+	#define UNIQUE_ID_BLOCKS (2)
 
 #pragma pack(push)
 #pragma pack(1)
-	typedef struct _pixel {
+	typedef struct _pixel_t {
 		uint8_t channel[MAX_CHANNEL + 1];
-	} pixel, *pixel_ptr;
+	} pixel_t, *pixel_ptr;
 #pragma pack(pop)
 
+	typedef struct _uid_t {
+		uint64_t block[UNIQUE_ID_BLOCKS];
+	} uid_t, *uid_ptr;
+
 	bool operator==(
-		const pixel &left,
-		const pixel &right
+		const pixel_t &left,
+		const pixel_t &right
 		);
 
 	bool operator!=(
-		const pixel &left,
-		const pixel &right
+		const pixel_t &left,
+		const pixel_t &right
+		);
+
+	bool operator==(
+		const uid_t &left,
+		const uid_t &right
+		);
+
+	bool operator!=(
+		const uid_t &left,
+		const uid_t &right
 		);
 
 	void cleanup(void);
@@ -59,7 +74,7 @@ namespace bitmap {
 		);
 
 	std::string convert_pixel_to_string(
-		const pixel &px
+		const pixel_t &px
 		);
 
 	size_t count(void);
@@ -69,7 +84,7 @@ namespace bitmap {
 		uint32_t height
 		);
 
-	pixel get_pixel(
+	pixel_t get_pixel(
 		uint32_t x,
 		uint32_t y,
 		const uid_t &id
@@ -90,7 +105,7 @@ namespace bitmap {
 	void set_pixel(
 		uint32_t x,
 		uint32_t y,
-		const pixel &px,
+		const pixel_t &px,
 		const uid_t &id
 		);
 

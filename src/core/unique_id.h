@@ -22,30 +22,13 @@
 
 #include <cstdint>
 #include <string>
+#include "bitmap.h"
 
 namespace bitmap {
 
-	#define NULL_UNIQUE_ID {0}
-
-	#define UNIQUE_ID_BLOCKS (2)
-
 	#define VALID_UNIQUE_ID(_UUID_) ((_UUID_).block[0] || (_UUID_).block[1])
 
-	typedef struct _uid_t {
-		uint64_t block[UNIQUE_ID_BLOCKS];
-	} uid_t, *uid_ptr;
-
 	bool operator<(
-		const uid_t &left,
-		const uid_t &right
-		);
-
-	bool operator==(
-		const uid_t &left,
-		const uid_t &right
-		);
-
-	bool operator!=(
 		const uid_t &left,
 		const uid_t &right
 		);
