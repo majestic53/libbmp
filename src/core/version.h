@@ -20,7 +20,7 @@
 #ifndef VERSION_H_
 #define VERSION_H_
 
-namespace sola {
+namespace bitmap {
 
 	#define VERSION_DELIM "."
 	#define VERSION_MAJOR 1

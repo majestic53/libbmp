@@ -39,7 +39,7 @@ namespace bitmap {
 	#define TRACE_LEVEL_STRING(_T_)\
 		((_T_) > MAX_TRACE_LEVEL ? UNKNOWN : TRACE_LEVEL_STR[_T_])
 
-#ifdef TRACE_ENABLED
+#ifdef __TRACE_ENABLED
 	#include <Windows.h>
 	#define SHOW_TO_TRACE_LEVEL TRACE_LEVEL_VERBOSE
 
